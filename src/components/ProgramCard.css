@@ -1,0 +1,78 @@
+.program-card{
+    transition: transform 0.2s ease-out;
+    display: block;
+    flex: 1;
+    margin: 180px 0 85px;
+    padding-left: 500px;
+    box-sizing: border-box;
+}
+.card-container {
+    display: flex;
+    gap: 50px;
+    width: max-content;
+}
+.program-card .card-wrap{
+    position: relative;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.program-card .card-wrap img{
+    width: 450px;
+    height: 630px;
+    display: block;
+    pointer-events: none;
+    -webkit-user-drag: none;
+}
+.program-card .card-wrap .hover-card{
+    width: 450px;
+    height: 630px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.65);
+    padding: 30px 28px 38px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: all 0.5s;
+    display: flex;
+    flex-direction: column;
+}
+.program-card .card-wrap .hover-card .tit{
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 28px;
+}
+.program-card .card-wrap .hover-card .desc{
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    line-height: 24px;
+    font-weight: 500;
+    font-size: 16px;
+    gap: 2px 12px;
+}
+.program-card .card-wrap .hover-card .desc .cont p:last-child{
+    white-space: normal;
+    word-break: keep-all;
+}
+.program-card .card-wrap .hover-card .tothe{
+    font-size: 26px;
+    font-weight: 700;
+    margin-top: auto;
+    align-self: flex-start;
+    position: relative;
+    display: inline-block;
+}
+.program-card .card-wrap .hover-card .tothe::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    bottom: -5px;
+    left: 0;
+}
+.program-card .card-wrap:hover .hover-card{
+    opacity: 1;
+}

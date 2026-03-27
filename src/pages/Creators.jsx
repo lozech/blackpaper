@@ -1,0 +1,133 @@
+import React, { useEffect, useRef } from "react";
+import { creators } from "../data/creators";
+import CreatorCard from "../components/CreatorCard";
+
+import "./Creators.css";
+
+function Creators(){
+    const wrapRef = useRef(null);
+    useEffect(() => {
+        setTimeout(() => {
+            document.querySelector(".page-name").classList.add("show");
+        }, 100);
+
+        setTimeout(() => {
+            document.querySelector(".creator-page").classList.add("showPage");
+        }, 200);
+
+        
+        const wrap = wrapRef.current;
+            if (!wrap) return;
+            wrap.addEventListener("dragstart", (e) => {
+                e.preventDefault();
+            });
+
+            let isDown = false;
+            let startX = 0;
+            let scrollLeft = 0;
+            let isDragging = false;
+
+            let direction = 0;
+            const speed = 2;
+
+            const animate = () => {
+                if (!isDown && direction !== 0) {
+                    wrap.scrollLeft += direction * speed;
+                }
+                requestAnimationFrame(animate);
+            };
+            animate();
+
+            const handleMouseDown = (e) => {
+                isDown = true;
+                isDragging = false;
+                startX = e.pageX - wrap.offsetLeft;
+                scrollLeft = wrap.scrollLeft;
+                direction = 0;
+            };
+
+            const handleMouseMove = (e) => {
+                if (!isDown) return;
+
+                e.preventDefault();
+
+                const x = e.pageX - wrap.offsetLeft;
+                const walk = x - startX;
+
+                if (Math.abs(walk) > 3) {
+                    isDragging = true;
+                }
+
+                wrap.scrollLeft = scrollLeft - walk;
+            };
+
+            const handleMouseUp = () => {
+                isDown = false;
+
+                setTimeout(() => {
+                    isDragging = false;
+                }, 50);
+            };
+
+
+            const handleHoverMove = (e) => {
+                if (isDown) return;
+
+                const { left, width } = wrap.getBoundingClientRect();
+                const x = e.clientX - left;
+                const percent = x / width;
+
+                if (percent < 0.3) {
+                    direction = -1;
+                } else if (percent > 0.7) {
+                    direction = 1;
+                } else {
+                    direction = 0;
+                }
+            };
+
+            const handleLeave = () => {
+                direction = 0;
+                isDown = false;
+            };
+
+            const handleClick = (e) => {
+                if (isDragging) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            };
+
+            wrap.addEventListener("click", handleClick, true);
+            wrap.addEventListener("mousedown", handleMouseDown);
+            wrap.addEventListener("mousemove", handleMouseMove);
+            wrap.addEventListener("mousemove", handleHoverMove);
+            wrap.addEventListener("mouseup", handleMouseUp);
+            wrap.addEventListener("mouseleave", handleLeave);
+
+            return () => {
+                wrap.removeEventListener("click", handleClick, true);
+                wrap.removeEventListener("mousedown", handleMouseDown);
+                wrap.removeEventListener("mousemove", handleMouseMove);
+                wrap.removeEventListener("mousemove", handleHoverMove);
+                wrap.removeEventListener("mouseup", handleMouseUp);
+                wrap.removeEventListener("mouseleave", handleLeave);
+            };
+        }, []);
+
+    
+    return(
+        <div className="creators">
+            <p className="page-name">CREATOR</p>
+            <div className="creator-scroll" ref={wrapRef}>
+                <section className="creator-page">
+                    {creators.map((creator) => (
+                        <CreatorCard key={creator.id} creator={creator} />
+                    ))}
+                </section>
+            </div>
+        </div>
+    );
+}
+
+export default Creators;

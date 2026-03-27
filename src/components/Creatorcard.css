@@ -1,0 +1,52 @@
+.creator-card{
+    transition: transform 0.2s ease-out;
+    flex: 0 0 auto;
+}
+.creator-card .card-container{
+    position: relative;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+.creator-card .card-container img{
+    width: 450px;
+    height: 630px;
+    display: block;
+    pointer-events: none;
+    -webkit-user-drag: none;
+    object-fit: cover;
+}
+.creator-card .card-container .hover-card{
+    width: 450px;
+    height: 630px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.65);
+    padding: 30px 28px 38px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: all 0.5s;
+    display: flex;
+    flex-direction: column;
+}
+.creator-card:hover .hover-card{
+    opacity: 1;
+}
+.creator-card .hover-card .eng-name{
+    font-size: 26px;
+    font-weight: 700;
+    font-family: "GTUltra", sans-serif;
+    text-transform: uppercase;
+}
+.creator-card .hover-card .kor-name{
+    margin-top: 6px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 30px;
+}
+
+body.whitePage .hover-card .kor-name,
+body.whitePage .hover-card .eng-name{
+    color: #fff;
+}

@@ -1,0 +1,136 @@
+.creator-detail{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    white-space: nowrap;
+    padding: 400px 0 115px 250px;
+}
+.creator-detail .page-name{
+    font-size: 60px;
+    color: #ff5400;
+    font-weight: 700;
+    position: fixed;
+    top: 45%;
+    left: -120px;
+    transform: rotate(-90deg);
+    opacity: 0;
+    transition: all 0.5s ease;
+    font-weight: 700;
+    z-index: 10000;
+}
+.creator-detail .page-name.show{
+    transform: rotate(-90deg);
+    opacity: 1;
+    left: -80px;
+}
+
+.creator-detail .card-detail{
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+}
+.creator-detail .card-detail .first-section{
+    position: sticky;
+    top: 95px;
+    height: fit-content;
+}
+.creator-detail .card-detail .first-section .name .eng-name{
+    font-size: 26px;
+    font-weight: 700;
+    font-family: "GTUltra", sans-serif;
+    text-transform: uppercase;
+}
+.creator-detail .card-detail .first-section .name .kor-name{
+    font-size: 24px;
+    font-weight: 600;
+}
+.creator-detail .card-detail .first-section .sns{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 35px;
+}
+.creator-detail .card-detail .first-section .sns a img{
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: invert(1);
+}
+body.whitePage .creator-detail .card-detail .first-section .sns a img{
+    filter: none;
+}
+.creator-detail .card-detail .first-section .sns a img.youtube{
+    width: 32px;
+}
+.creator-detail .card-detail .first-section .sns a img.x{
+    width: 26px;
+}
+
+
+
+
+.creator-detail .card-detail .second-section {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-right: 200px;
+}
+
+.creator-detail .card-detail .second-section .profile-img {
+    width: 450px;
+    height: 630px;
+    object-fit: cover;
+}
+
+.creator-detail .card-detail .third-section{
+    position: sticky;
+    top: 95px;
+    height: fit-content;
+}
+.creator-detail .card-detail .third-section .career-block{
+    margin-bottom: 50px;
+}
+.creator-detail .card-detail .third-section .career-block .career-title{
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.creator-detail .card-detail .third-section .career-block .career-item{
+    display: flex;
+    align-items: baseline;
+    gap: 100px;
+}
+.creator-detail .card-detail .third-section .career-block .career-item .year{
+    color: #939598;
+    font-family: "GTUltra", sans-serif;
+    font-size: 24px;
+    flex-shrink: 0;
+    width: 120px;
+}
+body.whitePage .creator-detail .card-detail .third-section .career-block .career-item .year{
+    color: #939598;
+}
+.creator-detail .card-detail .third-section .career-block .career-item .desc{
+    font-size: 24px;
+}
+
+.creator-detail .backIcon{
+    position: absolute;
+    bottom: 80px;
+    right: 100px;
+}
+.creator-detail .backIcon img{
+    width: 31px;
+    height: 24px;
+    margin-bottom: 15px;
+    object-fit: contain;
+    filter: invert(1);
+}
+body.whitePage .creator-detail .backIcon img{
+    filter: none;
+}
+.creator-detail .backIcon .backto{
+    font-size: 17px;
+    font-weight: 700;
+    font-family: "GTUltra", sans-serif;
+}
