@@ -12,13 +12,17 @@ a{
     color: #fff;
     display: block;
 }
-
 body {
     font-family: "Pretendard Variable", sans-serif;
-    position: relative;
     color: #fff;
     background-color: #000;
     position: relative;
+}
+html, body {
+    height: 100%;
+}
+.page-container {
+    min-height: 100vh;
 }
 
 
@@ -35,16 +39,32 @@ body {
     src: local("GTUltra-Bold"), url('/fonts/GTUltra-Bold.woff2') format("woff2"), url(../assets/fonts/GTUltra-Bold.woff) format("woff");
 }
 body.whitePage{
-    background-color: #fff;
     color: #000;
+    filter: none;
+    background-color: #fff;
 }
+body.whitePage * {
+    filter: none;
+}
+
 body.whitePage a{
     color: #000;
 }
-body.whitePage header nav{
+body.whitePage header{
     background-color: #fff;
 }
-
+body.whitePage header nav,
+body.whitePage header .toggle{
+    background-color: #fff;
+}
+body.whitePage footer *,
+body.whitePage footer{
+    background-color: #ff5400;
+}
+body.whitePage .logo{
+    background-color: #fff;;
+    filter: none;
+}
 body.home,
 body.home * {
     cursor: none !important;
@@ -70,9 +90,8 @@ body.home.whitePage .custom-cursor {
 }
 
 
-body.whitePage * {
-    filter: none;
-}
+
+
 
 header{
     position: fixed;
@@ -96,10 +115,10 @@ header .logo{
     background-image: url(./assets/images/logo-symbol.svg);
     filter: invert(1);
 }
-body.whitePage .logo{
-    filter: none;
+header{
+    width: 100%;
+    background-color: #000;
 }
-
 header nav{
     width: 100%;
     height: 95px;
@@ -119,11 +138,15 @@ header nav a:hover{
     color: #ff5400;
 }
 header .toggle{
+    width: 100%;
+    height: 95px;
     display: flex;
+    align-items: center;
     gap: 5px;
     font-weight: 700;
     font-family: "GTUltra", sans-serif;
     font-size: 16px;
+    background-color: #000;
 }
 header .toggle .black-toggle,
 header .toggle .white-toggle{
@@ -151,13 +174,15 @@ body.whitePage header .toggle .black-toggle:hover{
     width: 100%;
     height: 100%;
     margin: 0 auto;
-    padding: 120px 100px 63px;
+    padding: 120px 0px 0px;
     box-sizing: border-box;
 }
 .home-page .bigTxt{
+    width: 100%;
+    height: 100%;
     filter: invert(1);
     width: 100%;
-    padding: 20px 150px;
+    padding: 0px 250px;
     box-sizing: border-box;
     object-fit: contain;
 }
@@ -178,6 +203,23 @@ footer{
     font-size: 16px;
     font-family: "GTUltra", sans-serif;
     /* border: 1px solid #000; */
+}
+
+body.creators,
+body.program-page,
+body.contact {
+    min-height: 100vh;
+}
+body.home footer,
+body.creators footer,
+body.program-page footer,
+body.contact footer{
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+}
+body.contact.form-open footer{
+    position: static;
 }
 footer .copyright{
     font-weight: 700;

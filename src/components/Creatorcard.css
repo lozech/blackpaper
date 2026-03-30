@@ -1,6 +1,5 @@
 .creator-card{
     transition: transform 0.2s ease-out;
-    flex: 0 0 auto;
 }
 .creator-card .card-container{
     position: relative;

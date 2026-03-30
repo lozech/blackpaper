@@ -2,7 +2,6 @@
     transition: transform 0.2s ease-out;
     display: block;
     flex: 1;
-    margin: 180px 0 85px;
     padding-left: 500px;
     box-sizing: border-box;
 }
@@ -38,6 +37,9 @@
     transition: all 0.5s;
     display: flex;
     flex-direction: column;
+}
+body.whitePage .program-card .card-wrap .hover-card{
+    color: #fff;
 }
 .program-card .card-wrap .hover-card .tit{
     font-size: 26px;

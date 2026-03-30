@@ -8,6 +8,7 @@ body.contactPage a{
 }
 body.contactPage header{
     grid-template-columns: 1fr 55fr 0.8fr;
+    background-color: #ff5400;
 }
 body.contactPage header .logo{
     filter: none;
@@ -24,9 +25,12 @@ body.contactPage header .toggle{
 
 .contact-page{
     width: 100%;
+    /* height: 100%; */
     position: relative;
     display: flex;
     flex-direction: column;
+    margin: 350px 0 0px;
+    /* overflow: hidden; */
 }
 .contact-page .page-name{
     font-size: 60px;
@@ -49,7 +53,6 @@ body.contactPage header .toggle{
     display: flex;
     justify-content: center;
     gap: 400px;
-    margin: 350px 0 331px;
     box-sizing: border-box;
     flex: 1;
 }
@@ -106,6 +109,7 @@ body.contactPage header .toggle{
 .contact-page .contact-cont .second-section .select-wrap .dropdown{
     margin-bottom: 20px;
     font-size: 24px;
+    box-sizing: border-box;
 }
 .contact-page .contact-cont .second-section .select-wrap .dropdown .accodian{
     background-color: transparent;
@@ -113,7 +117,6 @@ body.contactPage header .toggle{
     width: 446px;
     height: 30px;
     outline:  none;
-    border-bottom: 1.5px solid #000;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -122,13 +125,14 @@ body.contactPage header .toggle{
     box-sizing: border-box;
     display: flex;
     align-items: center;
+    border-bottom: 1px solid #000;
 }
 .contact-page .contact-cont .second-section .select-wrap .dropdown .menu{
+    width: 100%;
+    height: 100%;
     border-bottom: 1.5px solid #000;
     padding: 26px;
-    position: absolute;
-    width: 100%;
-    left: 0;
+    box-sizing: border-box;
 }
 .contact-page .contact-cont .second-section .select-wrap .dropdown .menu > li{
     cursor: pointer;
@@ -313,4 +317,14 @@ body.contactPage header .toggle{
 .message .error{
     top: 70px;
     left: 20px;
+}
+
+.form-wrap{
+    width: 100%;
+    position: absolute;
+    top: 30px;
+    left: 0;
+}
+.form-wrap.on{
+    position: static;
 }

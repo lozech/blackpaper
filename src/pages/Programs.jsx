@@ -6,6 +6,8 @@
     function Programs(){
         const wrapRef = useRef(null);
         useEffect(() => {
+            document.body.classList.remove("contact", "form-open", "creators");
+            document.body.classList.add("program-page");
             setTimeout(() => {
                 document.querySelector(".page-name").classList.add("show");
             }, 100);
@@ -47,9 +49,8 @@
                 direction = 0;
             };
 
-            const handleMouseMove = (e) => {
-                if (!isDown) return;
-
+            const handleMouseMoveAll = (e) => {
+            if (isDown) {
                 e.preventDefault();
 
                 const x = e.pageX - wrap.offsetLeft;
@@ -60,7 +61,17 @@
                 }
 
                 wrap.scrollLeft = scrollLeft - walk;
-            };
+                return;
+            }
+
+            const { left, width } = wrap.getBoundingClientRect();
+            const x = e.clientX - left;
+            const percent = x / width;
+
+            if (percent < 0.3) direction = -1;
+            else if (percent > 0.7) direction = 1;
+            else direction = 0;
+        };
 
             const handleMouseUp = () => {
                 isDown = false;
@@ -101,18 +112,17 @@
 
             wrap.addEventListener("click", handleClick, true);
             wrap.addEventListener("mousedown", handleMouseDown);
-            wrap.addEventListener("mousemove", handleMouseMove);
-            wrap.addEventListener("mousemove", handleHoverMove);
+            wrap.addEventListener("mousemove", handleMouseMoveAll);
             wrap.addEventListener("mouseup", handleMouseUp);
             wrap.addEventListener("mouseleave", handleLeave);
 
             return () => {
                 wrap.removeEventListener("click", handleClick, true);
                 wrap.removeEventListener("mousedown", handleMouseDown);
-                wrap.removeEventListener("mousemove", handleMouseMove);
-                wrap.removeEventListener("mousemove", handleHoverMove);
+                wrap.removeEventListener("mousemove", handleMouseMoveAll);
                 wrap.removeEventListener("mouseup", handleMouseUp);
                 wrap.removeEventListener("mouseleave", handleLeave);
+                document.body.classList.remove("program-page");
             };
         }, []);
 

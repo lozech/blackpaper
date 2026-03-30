@@ -35,7 +35,22 @@ function Contact(){
         setTimeout(() => {
             document.querySelector(".page-name").classList.add("show");
         }, 100);
-    }, []);
+        document.body.classList.remove("program-page", "form-open", "creators");
+        document.body.classList.add("contact");
+
+        return () => {
+            document.body.classList.remove("contact");
+            document.body.classList.remove("form-open");
+            };
+        }, []);
+
+    useEffect(() => {
+        if (selected !== "문의 내용 선택") {
+            document.body.classList.add("form-open");
+        } else {
+            document.body.classList.remove("form-open");
+        }
+    }, [selected]);
 
     return(
         <section className="contact-page">
@@ -58,7 +73,8 @@ function Contact(){
                                 {selected}
                             </div>
 
-                            {open && (
+                            <div className={`form-wrap ${selected !== "문의 내용 선택" ? "on" : ""}`}>
+                                {open && (
                                 <ul className="menu">
                                     {menu.map((item, i) => (
                                         <li 
@@ -72,120 +88,123 @@ function Contact(){
                                         </li>
                                     ))}
                                 </ul>
-                            )}
-                        </div>
-                    </div>
-                    
-                    <div className={`form ${selected !== "문의 내용 선택" ? "showPage" : ""}`}>
-                        <div className="name">
-                            <input
-                                type="text"
-                                value={name}
-                                onChange={(e) => {
-                                    setName(e.target.value);
-                                    setErrors(prev => ({ ...prev, name: false }));
-                                }}
-                            />
-                            <p>이름*</p>
+                                )}
+                                <div className={`form ${selected !== "문의 내용 선택" ? "showPage" : ""}`}>
+                                    <div className="name">
+                                        <input
+                                            type="text"
+                                            value={name}
+                                            onChange={(e) => {
+                                                setName(e.target.value);
+                                                setErrors(prev => ({ ...prev, name: false }));
+                                            }}
+                                        />
+                                        <p>이름*</p>
 
-                            {errors.name && !name && (
-                                <span className="error">필수 기입 항목입니다</span>
-                            )}
-                        </div>
-                        <div className="company">
-                            <div className="company-name">
-                                <input type="text" />
-                                <p>회사</p>
-                            </div>
-                            <div className="part-name">
-                                <input type="text" />
-                                <p>부서</p>
-                            </div>
-                        </div>
-                        <div className="email">
-                            <input
-                                type="email"
-                                value={email}
-                                onChange={(e) => {
-                                    setEmail(e.target.value);
-                                    setErrors(prev => ({ ...prev, email: false }));
-                                }}
-                            />
-                            <p>이메일*</p>
+                                        {errors.name && !name && (
+                                            <span className="error">필수 기입 항목입니다</span>
+                                        )}
+                                    </div>
+                                    <div className="company">
+                                        <div className="company-name">
+                                            <input type="text" />
+                                            <p>회사</p>
+                                        </div>
+                                        <div className="part-name">
+                                            <input type="text" />
+                                            <p>부서</p>
+                                        </div>
+                                    </div>
+                                    <div className="email">
+                                        <input
+                                            type="email"
+                                            value={email}
+                                            onChange={(e) => {
+                                                setEmail(e.target.value);
+                                                setErrors(prev => ({ ...prev, email: false }));
+                                            }}
+                                        />
+                                        <p>이메일*</p>
 
-                            {errors.email && !email && (
-                                <span className="error">필수 기입 항목입니다</span>
-                            )}
-                        </div>
-                        <div className="phone">
-                            <input
-                                type="tel"
-                                value={phone}
-                                onChange={(e) => {
-                                    setPhone(e.target.value);
-                                    setErrors(prev => ({ ...prev, phone: false }));
-                                }}
-                            />
-                            <p>연락처*</p>
+                                        {errors.email && !email && (
+                                            <span className="error">필수 기입 항목입니다</span>
+                                        )}
+                                    </div>
+                                    <div className="phone">
+                                        <input
+                                            type="tel"
+                                            value={phone}
+                                            onChange={(e) => {
+                                                setPhone(e.target.value);
+                                                setErrors(prev => ({ ...prev, phone: false }));
+                                            }}
+                                        />
+                                        <p>연락처*</p>
 
-                            {errors.phone && !phone && (
-                                <span className="error">필수 기입 항목입니다</span>
-                            )}
-                        </div>
-                        <div className="message">
-                            <p className="label">문의 내용*</p>
+                                        {errors.phone && !phone && (
+                                            <span className="error">필수 기입 항목입니다</span>
+                                        )}
+                                    </div>
+                                    <div className="message">
+                                        <p className="label">문의 내용*</p>
 
-                            <textarea
-                                value={text}
-                                onChange={(e) => {
-                                    setText(e.target.value);
-                                    setErrors(prev => ({ ...prev, message: false }));
-                                }}
-                                maxLength={300}
-                            />
+                                        <textarea
+                                            value={text}
+                                            onChange={(e) => {
+                                                setText(e.target.value);
+                                                setErrors(prev => ({ ...prev, message: false }));
+                                            }}
+                                            maxLength={300}
+                                        />
 
-                            <p className="count">{text.length}/300</p>
+                                        <p className="count">{text.length}/300</p>
 
-                            {errors.message && !text && (
-                                <span className="error">필수 기입 항목입니다</span>
-                            )}
-                        </div>
-                        <div className="file-wrap">
-                            <div className="file-cont">
-                                <p className="file-txt">
-                                    {file ? file.name : "첨부파일"}
-                                </p>
-                                <input 
-                                    type="file" 
-                                    id="form-file" 
-                                    style={{ display: "none" }}
-                                    onChange={(e) => {
-                                        setFile(e.target.files[0]);
-                                    }}
-                                />
-                                <div className="file-actions">
-                                    {file && (
-                                        <button 
-                                            type="button"
-                                            className="remove"
-                                            onClick={() => setFile(null)}
-                                        >
-                                            ×
-                                        </button>
-                                    )}
+                                        {errors.message && !text && (
+                                            <span className="error">필수 기입 항목입니다</span>
+                                        )}
+                                    </div>
+                                    <div className="file-wrap">
+                                        <div className="file-cont">
+                                            <p className="file-txt">
+                                                {file ? file.name : "첨부파일"}
+                                            </p>
+                                            <input 
+                                                type="file" 
+                                                id="form-file" 
+                                                style={{ display: "none" }}
+                                                onChange={(e) => {
+                                                    setFile(e.target.files[0]);
+                                                }}
+                                            />
+                                            <div className="file-actions">
+                                                {file && (
+                                                    <button 
+                                                        type="button"
+                                                        className="remove"
+                                                        onClick={() => setFile(null)}
+                                                    >
+                                                        ×
+                                                    </button>
+                                                )}
+                                            </div>
+                                        </div>
+                                        
+                                        <label htmlFor="form-file" className="file-button">
+                                            +
+                                        </label>
+                                    </div>
+                                    <div className="send" onClick={handleSubmit}>
+                                        <p>SEND</p>
+                                        <img src={images.sendBtn} alt="sendbtn" className="btn" />
+                                        <img src={images.hoverSendBtn} alt="hoversendbtn" className="hoverbtn" />
+                                    </div>
                                 </div>
                             </div>
                             
-                            <label htmlFor="form-file" className="file-button">
-                                +
-                            </label>
-                        </div>
-                        <div className="send" onClick={handleSubmit}>
-                            <p>SEND</p>
-                            <img src={images.sendBtn} alt="sendbtn" className="btn" />
-                            <img src={images.hoverSendBtn} alt="hoversendbtn" className="hoverbtn" />
                         </div>
                     </div>
+                    
+                    
                 </div>
             </div>
         </section>

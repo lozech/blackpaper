@@ -7,6 +7,8 @@ import "./Creators.css";
 function Creators(){
     const wrapRef = useRef(null);
     useEffect(() => {
+        document.body.classList.remove("contact", "form-open", "program-page");
+        document.body.classList.add("creators");
         setTimeout(() => {
             document.querySelector(".page-name").classList.add("show");
         }, 100);
@@ -112,8 +114,9 @@ function Creators(){
                 wrap.removeEventListener("mousemove", handleHoverMove);
                 wrap.removeEventListener("mouseup", handleMouseUp);
                 wrap.removeEventListener("mouseleave", handleLeave);
+                document.body.classList.remove("creators");
             };
-        }, []);
+        }, []); 
 
     
     return(
