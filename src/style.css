@@ -221,6 +221,10 @@ body.contact footer{
 body.contact.form-open footer{
     position: static;
 }
+body.contact.form-open .contact-page {
+    min-height: calc(100vh - 50px);
+    margin-bottom: 150px;
+}
 footer .copyright{
     font-weight: 700;
 }
