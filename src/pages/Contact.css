@@ -256,8 +256,8 @@ body.contactPage header .toggle{
 }
 .file-actions{
     position: absolute;
-    left: 360px;
-    bottom: 12px;
+    left: 0px;
+    bottom: 14px;
 }
 
 .file-actions .remove{
