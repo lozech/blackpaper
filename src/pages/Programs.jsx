@@ -15,8 +15,8 @@
             
             cards.forEach((el, idx) => {
                 setTimeout(() => {
-                    el.classList.add("showPage");
-                }, idx * 100);
+                    wrapRef.current.classList.add("showPage");
+                }, 50);
             });
 
             const wrap = wrapRef.current;
