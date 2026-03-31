@@ -8,8 +8,8 @@ function Home(){
         document.body.appendChild(cursor);
 
         const move = (e) => {
-            const x = e.clientX - 10; 
-            const y = e.clientY - 5;  
+            cursor.style.left = e.clientX + "px";
+            cursor.style.top = e.clientY + "px";
 
             cursor.style.transform = `translate(${x}px, ${y}px)`;
         };

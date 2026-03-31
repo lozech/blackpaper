@@ -33,7 +33,7 @@ html, body {
     src: local("Pretendard Variable"), url('/fonts/GTUltra-Bold.woff2') format("woff2-variations");
 }
 @font-face {
-    font-family: GTUltra;
+    font-family: 'GTUltra';
     font-weight: 700;
     font-display: swap;
     src: local("GTUltra-Bold"), url('/fonts/GTUltra-Bold.woff2') format("woff2"), url(../assets/fonts/GTUltra-Bold.woff) format("woff");
@@ -76,7 +76,7 @@ body.home * {
     left: 0;
     width: 69px;
     height: 87px;
-    z-index: 10001;
+    z-index: 9999; 
     background-repeat: no-repeat;
     background-size: contain;
 }
@@ -95,14 +95,16 @@ body.home.whitePage .custom-cursor {
 
 header{
     position: fixed;
-    inset: 0;
-    z-index: 10000;
+    top: 0;
+    left: 0;
+    z-index: 1000;
     width: 100%;
     height: 95px;
     display: grid;
     grid-template-columns: 1fr 11fr 0.1fr;
     align-items: center;
     padding: 0 36px;
+    box-sizing: border-box;
 }
 
 header .logo{
@@ -203,8 +205,11 @@ footer{
     font-size: 16px;
     font-family: "GTUltra", sans-serif;
     /* border: 1px solid #000; */
+    z-index: 9999;
 }
-
+footer *{
+    pointer-events: auto;
+}
 body.creators,
 body.program-page,
 body.contact {
@@ -230,19 +235,21 @@ footer .copyright{
 }
 footer .sns{
     display: flex;
-    gap: 16px;
+    gap: 10px;
     align-items: center;
 }
 footer .sns p{
     font-weight: 700;
 }
 footer .sns a{
-    display: block;
-    width: 24px;
-    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
 }
 footer .sns a img{
-    width: 100%;
-    height: 100%;
+    width: 30px;
+    height: 30px;
     object-fit: contain;
 }
